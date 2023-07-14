@@ -17,9 +17,7 @@ packages = [{ include = "image_analyst", from = "src" }]
 python = "^3.9"
 numpy = "^1.24.3"
 image-analyst = "^0.1.0"
-opencv-python = {version = "^4.8.0.74", optional = true}
 opencv-contrib-python = {version = "^4.8.0.74", optional = true}
-opencv-python-headless = {version = "^4.8.0.74", optional = true}
 opencv-contrib-python-headless = {version = "^4.8.0.74", optional = true}
 
 [tool.poetry.group.dev.dependencies]
@@ -30,10 +28,8 @@ flake8 = "^6.0.0"
 flake8-docstrings = "^1.7.0"
 
 [tool.poetry.extras]
-cv2 = ["opencv-python"]
-cv2-contrib = ["opencv-contrib-python"]
-cv2-headless = ["opencv-python-headless"]
-cv2-contrib-headless = ["opencv-contrib-python-headless"]
+cv2 = ["opencv-contrib-python"]
+cv2-headless = ["opencv-contrib-python-headless"]
 
 [build-system]
 requires = ["poetry-core"]
