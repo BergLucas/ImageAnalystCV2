@@ -2,7 +2,7 @@ from __future__ import annotations
 from image_analyst.utils import NmsFunction
 from image_analyst.image import ImageFormat
 from image_analyst.models import Detection
-from typing import Optional, Generator
+from typing import Optional, Generator, Union
 from contextlib import contextmanager
 import numpy as np
 import cv2
@@ -81,14 +81,14 @@ def convert_image(
 
 @contextmanager
 def create_frame_generator(
-    path_or_id: str | int,
+    path_or_id: Union[str, int],
     api_preference: cv2.VideoCaptureAPIs = cv2.CAP_ANY,
     video_options: Optional[dict[cv2.VideoCaptureProperties, float]] = None,
 ) -> Generator[Generator[np.ndarray, None, None], None, None]:
     """Creates a generator that yields the frames a video.
 
     Args:
-        path_or_id (str | int): the path or id of the video.
+        path_or_id (Union[str, int]): the path or id of the video.
         api_preference (cv2.VideoCaptureAPIs, optional): the API preference.
             Defaults to cv2.CAP_ANY.
         video_options (Optional[dict[cv2.VideoCaptureProperties, float]], optional):
