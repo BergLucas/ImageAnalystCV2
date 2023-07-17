@@ -46,17 +46,17 @@ class YoloV3OpenCV(ODModel):
         """
         try:
             weights_path = download_file(
-                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.0/cv2-yolov3-coco.weights",  # noqa: E501
+                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.1/cv2-yolov3-coco.weights",  # noqa: E501
                 "cv2-yolov3-coco.weights",
                 report_callback,
             )
             config_path = download_file(
-                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.0/cv2-yolov3-coco.cfg",  # noqa: E501
+                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.1/cv2-yolov3-coco.cfg",  # noqa: E501
                 "cv2-yolov3-coco.cfg",
                 report_callback,
             )
             labels_path = download_file(
-                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.0/cv2-yolov3-coco.names",  # noqa: E501
+                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.1/cv2-yolov3-coco.names",  # noqa: E501
                 "cv2-yolov3-coco.names",
                 report_callback,
             )
@@ -102,17 +102,17 @@ class YoloV3OpenCV(ODModel):
         """
         try:
             weights_path = download_file(
-                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.0/cv2-yolov3-tiny-coco.weights",  # noqa: E501
+                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.1/cv2-yolov3-tiny-coco.weights",  # noqa: E501
                 "cv2-yolov3-tiny-coco.weights",
                 report_callback,
             )
             config_path = download_file(
-                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.0/cv2-yolov3-tiny-coco.cfg",  # noqa: E501
+                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.1/cv2-yolov3-tiny-coco.cfg",  # noqa: E501
                 "cv2-yolov3-tiny-coco.cfg",
                 report_callback,
             )
             labels_path = download_file(
-                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.0/cv2-yolov3-tiny-coco.names",  # noqa: E501
+                "https://github.com/BergLucas/ImageAnalystCV2/releases/download/v0.1.1/cv2-yolov3-tiny-coco.names",  # noqa: E501
                 "cv2-yolov3-tiny-coco.names",
                 report_callback,
             )
