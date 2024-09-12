@@ -1,19 +1,21 @@
 from __future__ import annotations
-from image_analyst.exceptions import DownloadFailedException
-from image_analyst.utils import download_file, ReportFunction
+
+import logging
+from typing import Optional
+
+import numpy as np
+
+import cv2
 from image_analyst.cv2.utils import NmsCV2
 from image_analyst.exceptions import (
-    ModelLoadingFailedException,
-    InvalidDtypeException,
     DetectionFailedException,
+    DownloadFailedException,
+    InvalidDtypeException,
+    ModelLoadingFailedException,
 )
-from image_analyst.image import ImageFormat, BoundingBox, verify_image
-from image_analyst.models import ODModel, Detection
-from image_analyst.utils import NmsFunction
-from typing import Optional
-import numpy as np
-import logging
-import cv2
+from image_analyst.image import BoundingBox, ImageFormat, verify_image
+from image_analyst.models import Detection, ODModel
+from image_analyst.utils import NmsFunction, ReportFunction, download_file
 
 logger = logging.getLogger(__name__)
 
@@ -162,13 +164,17 @@ class YoloV3OpenCV(ODModel):
         try:
             with open(labels_path, "rt") as f:
                 self.__supported_classes = tuple(f.read().splitlines())
-        except OSError:
-            raise ModelLoadingFailedException("Cannot load the supported classes.")
+        except OSError as error:
+            raise ModelLoadingFailedException(
+                "Cannot load the supported classes."
+            ) from error
 
         try:
             self.__net = cv2.dnn.readNetFromDarknet(config_path, weights_path)
-        except Exception:
-            raise ModelLoadingFailedException("Cannot load the YoloV3 model.")
+        except Exception as error:
+            raise ModelLoadingFailedException(
+                "Cannot load the YoloV3 model."
+            ) from error
 
         self.__net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
         self.__net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
@@ -214,7 +220,7 @@ class YoloV3OpenCV(ODModel):
         logger.info("Completed Image detection")
 
         logger.info("Started Bounding boxes creation")
-        frameHeight, frameWidth, _ = image.shape
+        frame_height, frame_width, _ = image.shape
 
         detections = []
         for out in outputs:
@@ -227,10 +233,10 @@ class YoloV3OpenCV(ODModel):
                 if score < self.__score_threshold:
                     continue
 
-                center_x = int(detection[0] * frameWidth)
-                center_y = int(detection[1] * frameHeight)
-                width = int(detection[2] * frameWidth)
-                height = int(detection[3] * frameHeight)
+                center_x = int(detection[0] * frame_width)
+                center_y = int(detection[1] * frame_height)
+                width = int(detection[2] * frame_width)
+                height = int(detection[3] * frame_height)
                 left = int(center_x - width / 2)
                 top = int(center_y - height / 2)
 

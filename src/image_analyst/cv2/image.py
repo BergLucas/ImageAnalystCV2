@@ -1,6 +1,7 @@
-from image_analyst.image import verify_dimensions, verify_image
 import numpy as np
+
 import cv2
+from image_analyst.image import verify_dimensions, verify_image
 
 
 def bilinear_resize_cv2(

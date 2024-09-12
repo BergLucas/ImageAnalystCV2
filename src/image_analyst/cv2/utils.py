@@ -1,11 +1,16 @@
 from __future__ import annotations
-from image_analyst.utils import NmsFunction
-from image_analyst.image import ImageFormat
-from image_analyst.models import Detection
-from typing import Optional, Generator, Union
+
 from contextlib import contextmanager
+from typing import TYPE_CHECKING, Generator, Optional, Union
+
 import numpy as np
+
 import cv2
+from image_analyst.image import ImageFormat
+from image_analyst.utils import NmsFunction
+
+if TYPE_CHECKING:
+    from image_analyst.models import Detection
 
 
 class NmsCV2(NmsFunction):
