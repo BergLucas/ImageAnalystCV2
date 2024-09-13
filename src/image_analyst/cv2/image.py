@@ -24,4 +24,4 @@ def bilinear_resize_cv2(
     """
     verify_dimensions(new_width, new_height)
     verify_image(image)
-    return cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+    return cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_LINEAR)  # type: ignore[attr-defined]

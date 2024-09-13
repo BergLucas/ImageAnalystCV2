@@ -72,7 +72,7 @@ def convert_image(
     if target_format == ImageFormat.RGB:
         formatted_image = image
     elif target_format == ImageFormat.BGR:
-        formatted_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        formatted_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # type: ignore[attr-defined]
     else:
         raise ValueError(f"Unsupported image format: {target_format}")
 
@@ -87,8 +87,8 @@ def convert_image(
 @contextmanager
 def create_frame_generator(
     path_or_id: Union[str, int],
-    api_preference: cv2.VideoCaptureAPIs = cv2.CAP_ANY,
-    video_options: Optional[dict[cv2.VideoCaptureProperties, float]] = None,
+    api_preference: cv2.VideoCaptureAPIs = cv2.CAP_ANY,  # type: ignore[name-defined, attr-defined]
+    video_options: Optional[dict[cv2.VideoCaptureProperties, float]] = None,  # type: ignore[name-defined, attr-defined]
 ) -> Generator[Generator[np.ndarray, None, None], None, None]:
     """Creates a generator that yields the frames a video.
 
@@ -103,7 +103,7 @@ def create_frame_generator(
         Generator[Generator[np.ndarray, None, None], None, None]: a generator
             that yields the frames from the video.
     """
-    video = cv2.VideoCapture(path_or_id, api_preference)
+    video = cv2.VideoCapture(path_or_id, api_preference)  # type: ignore[attr-defined]
 
     if video_options is not None:
         for key, value in video_options.items():
