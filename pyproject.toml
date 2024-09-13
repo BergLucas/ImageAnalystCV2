@@ -51,8 +51,8 @@ relative_files = true
 branch = true
 source = ["src/image_analyst", "tests"]
 
-[tool.ruff]
-lint.select = [
+[tool.ruff.lint]
+select = [
     "D",   # pydocstyle
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -66,16 +66,7 @@ lint.select = [
     "PL",  # pylint
 ]
 
-lint.ignore = [
-    "E203",
-    "D100",
-    "D101",
-    "D104",
-    "D105",
-    "D106",
-    "N818",
-    "PLR0913",
-]
+ignore = ["E203", "D100", "D101", "D104", "D105", "D106", "N818", "PLR0913"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
